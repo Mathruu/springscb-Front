@@ -18,7 +18,7 @@ pre {
 }
 #home .navbar,
 #help .navbar {
-    background: #349aed;
+    background: #247ec7;
     background: linear-gradient(145deg, #349aed 50%, #34d8ed 100%);
     transition: box-shadow 200ms ease-in;
 }
