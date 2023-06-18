@@ -25,8 +25,8 @@ function Navbar(props) {
             <ul className='navbar-nav'>
             <NavbarItem
                 render='true'
-                href='/cadastro-livro'
-                label='Cadastrar Livro'
+                href='/listagem-clientes'
+                label='Clientes'
             />
         </ul>
         <ul className='navbar-nav'>
@@ -39,32 +39,26 @@ function Navbar(props) {
         <ul className='navbar-nav'>
             <NavbarItem 
                 render='true' 
-                href='/cadastro-cliente' 
-                label='Cadastrar Clientes' />
+                href='/listegem-funcionarios' 
+                label='Funcionários' />
         </ul>
         <ul className='navbar-nav'>
             <NavbarItem 
             render='true' 
-            href='/listagem-clientes' 
-            label='Clientes' />
+            href='/cadastro-clientes' 
+            label='Cadastrar Clientes' />
+        </ul>
+        <ul className='navbar-nav'>
+            <NavbarItem 
+            render='true' 
+            href='/cadastro-livro'
+            label='Cadastrar Livros' />
         </ul>
         <ul className='navbar-nav'>
             <NavbarItem 
             render='true' 
             href='/cadastro-funcionarios'
             label='Cadastrar Funcionários' />
-        </ul>
-        <ul className='navbar-nav'>
-            <NavbarItem 
-            render='true' 
-            href='/listagem-funcionarios'
-            label='Funcionários' />
-        </ul>
-        <ul className='navbar-nav'>
-            <NavbarItem render='true' href='/login' label='Entrar' />
-        </ul>
-        <ul className='navbar-nav'>
-            <NavbarItem render='true' href='/' label='Sair' />
         </ul>
         </div>
     </div>

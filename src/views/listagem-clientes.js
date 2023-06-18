@@ -72,7 +72,7 @@ function ListagemClientes() {
                                 className='btn btn-warning'
                                 onClick={() => cadastrar()}
                             >
-                                Novo Aluno
+                                Novo Cliente
                             </button>
                             <table className='table table-hover'>
                                 <thead>
