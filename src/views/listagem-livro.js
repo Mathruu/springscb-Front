@@ -76,7 +76,6 @@ function ListagemLivro() {
                         <table className='table table-hover'>
                             <thead>
                                 <tr>
-                                    <th scope='col'>Nome</th>
                                     <th scope='col'>Título</th>
                                     <th scope='col'>Autor</th>
                                     <th scope='col'>Editora</th>
@@ -85,7 +84,6 @@ function ListagemLivro() {
                             <tbody>
                                 {dados.map((dado) => (
                                     <tr key={dado.id}>
-                                        <td>{dado.nome}</td>
                                         <td>{dado.titulo}</td>
                                         <td>{dado.autor}</td>
                                         <td>{dado.editora}</td>
