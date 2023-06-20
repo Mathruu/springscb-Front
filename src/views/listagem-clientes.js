@@ -79,8 +79,8 @@ function ListagemClientes() {
                                     <tr>
                                         <th scope='col'>Nome</th>
                                         <th scope='col'>Cpf</th>
-                                        <th scope='col'>Endereço</th>
                                         <th scope='col'>Email</th>
+                                        <th scope='col'>Livros</th>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -88,8 +88,8 @@ function ListagemClientes() {
                                         <tr key={dado.id}>
                                             <td>{dado.nome}</td>
                                             <td>{dado.cpf}</td>
-                                            <td>{dado.endereco}</td>
                                             <td>{dado.email}</td>
+                                            <td>{dado.livros}</td>
                                             <td>
                                                 <Stack spacing={1} padding={0} direction='row'>
                                                     <IconButton
