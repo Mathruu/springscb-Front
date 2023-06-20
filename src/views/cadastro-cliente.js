@@ -12,6 +12,7 @@ import '../custom.css'
 
 import axios from "axios";
 import { BASE_URL } from "../config/axios";
+import { ContentPasteSearchOutlined } from "@mui/icons-material";
 
 function CadastroCliente() {
     const { idParam } = useParams();
@@ -22,7 +23,7 @@ function CadastroCliente() {
     const [nome, setNome] = useState('');
     const [cpf, setCpf] = useState('');
     const [email, setEmail] = useState('');
-    const [endereco, setEndereco] = useState(0);
+    const [IdEndereco, setEndereco] = useState(0);
     const [idlivro, setIdLivro] = useState(0);
 
     const [dados, setDados] = React.useState([]);
@@ -52,7 +53,7 @@ function CadastroCliente() {
             nome,
             cpf,
             email,
-            endereco,
+            IdEndereco,
             idlivro
         };
         data = JSON.stringify(data);
@@ -84,16 +85,21 @@ function CadastroCliente() {
     }  
     
     async function buscar() {
-        await axios.get(`${baseURL}/${idParam}`)
-        .then((response) => {
-            setDados(response.data);
-        });
-        setId(dados.id);
-        setNome(dados.nome);
-        setCpf(dados.cpf);
-        setEmail(dados.email);
-        setEndereco(dados.endereco);
-        setIdLivro(dados.idlivro);
+        if (idParam) {
+            await axios.get(`${baseURL}/${idParam}`)
+            .then((response) => {
+                setDados(response.data);
+                setId(response.data.id);
+                setNome(response.data.nome);
+                setCpf(response.data.cpf);
+                setEmail(response.data.email);
+                setEndereco(response.data.endereco);
+                setIdLivro(response.data.idlivro);
+                })
+            .catch((error) => {
+                console.error(error);
+            });
+        }
     }
 
     const [dadosLivros, setDadosLivros] = React.useState(null);
@@ -154,7 +160,7 @@ function CadastroCliente() {
                                 <input
                                     type='endereco'
                                     id='inputEndereco'
-                                    value={endereco}
+                                    value={IdEndereco}
                                     className='form-control'
                                     name='endereco'
                                     onChange={(e) => setEndereco(e.target.value)}

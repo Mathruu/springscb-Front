@@ -13,11 +13,11 @@ function Rotas(props) {
     return (
         <BrowserRouter>
             <Routes>
-                <Route path= '/cadastro-cliente/idParam?' element={<CadastroCliente />} />
+                <Route path= '/cadastro-cliente/:idParam?' element={<CadastroCliente />} />
                 <Route path= '/listagem-clientes' element={<ListagemClientes />} />
-                <Route path= '/cadastro-livro/idParam?' element={<CasdastroLivro />} />
+                <Route path= '/cadastro-livro/:idParam?' element={<CasdastroLivro />} />
                 <Route path= '/listagem-livro' element={<ListagemLivro />} />
-                <Route path= '/cadastro-funcionarios/idParam?' element={<CadastrarFuncionaro />} />
+                <Route path= '/cadastro-funcionarios/:idParam?' element={<CadastrarFuncionaro />} />
                 <Route path= '/listagem-funcionarios' element={<ListagemFuncionarios />} />
             </Routes>
         </BrowserRouter>

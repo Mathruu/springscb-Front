@@ -23,7 +23,7 @@ function CadastrarFuncionaro() {
     const [nome, setNome] = useState('');
     const [cpf, setCpf] = useState('');
     const [email, setEmail] = useState('');
-    const [endereco, setEndereco] = useState(0);
+    const [IdEndereco, setEndereco] = useState(0);
     const [salario, setSalario] = useState('');
     const [vendas, setVendas] = useState('');
 
@@ -55,7 +55,7 @@ function CadastrarFuncionaro() {
             nome,
             cpf,
             email,
-            endereco,
+            IdEndereco,
             salario,
             vendas
         };
@@ -88,19 +88,23 @@ function CadastrarFuncionaro() {
     }
 
     async function buscar() {
-        await axios
-        .get(`${baseURL}/${idParam}`)
-        .then((response) => {
-            setDados(response.data);
+        if (idParam) {
+            await axios.get(`${baseURL}/${idParam}`)
+            .then((response) => {
+                setDados(response.data);
+                setId(response.data.id);
+                setNome(response.data.nome);
+                setCpf(response.data.cpf);
+                setEmail(response.data.email);
+                setEndereco(response.data.endereco);
+                setSalario(response.data.salario);
+                setVendas(response.data.vendas);
+            })
+            .catch((error) => {
+                console.error(error);
         });
-        setId(dados.id);
-        setNome(dados.nome);
-        setCpf(dados.cpf);
-        setEmail(dados.email);
-        setEndereco(dados.endereco);
-        setSalario(dados.salario);
-        setVendas(dados.vendas);
     }
+}
 
     useEffect(() => {
         buscar();
@@ -150,7 +154,7 @@ function CadastrarFuncionaro() {
                                 <input
                                     type='text'
                                     id='inputEndereco'
-                                    value={endereco}
+                                    value={IdEndereco}
                                     className='form-control'
                                     name='endereco'
                                     onChange={(e) => setEndereco(e.target.value)}
@@ -201,4 +205,3 @@ function CadastrarFuncionaro() {
 }
 
 export default CadastrarFuncionaro;
-

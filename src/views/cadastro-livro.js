@@ -59,7 +59,7 @@ function CasdastroLivro() {
             })
             .then(function (response) {
                 mensagemSucesso(`Livro ${titulo} cadastrado com sucesso!`);
-                navigate(`/listagem-livros`);
+                navigate(`/listagem-livro`);
             })
             .catch(function (error) {
                 mensagemErro(error.response.data);
@@ -71,7 +71,7 @@ function CasdastroLivro() {
         })
         .then(function (response) {
             mensagemSucesso(`Livro ${titulo} alterado com sucesso!`);
-            navigate(`/listagem-livros`);
+            navigate(`/listagem-livro`);
         })
         .catch(function (error) {
             mensagemErro(error.response.data);
@@ -80,16 +80,25 @@ function CasdastroLivro() {
     }
 
     async function buscar() {
-        await axios.get(`${baseURL}/${idParam}`)
-        .then((response) => {
-            setDados(response.data);
-        });
-        setId(dados.id);
-        setTitulo(dados.titulo);
-        setAutor(dados.autor);
-        setEditora(dados.editora);
-        setDescricao(dados.descricao);
-    }
+        if (idParam) { 
+            await axios.get(`${baseURL}/${idParam}`)
+                .then((response) => {
+                    setDados(response.data);
+                    setId(response.data.id);
+                    setTitulo(response.data.titulo);
+                    setAutor(response.data.autor);
+                    setEditora(response.data.editora);
+                    setDescricao(response.data.descricao);
+                    })
+                .catch((error) => {
+                    console.error(error);
+                });
+            }
+        }
+
+    useEffect(() => {
+        buscar();
+    }, [id]);
 
     return (
         <div className='container'>
@@ -128,14 +137,14 @@ function CasdastroLivro() {
                                 />
                             </FormGroup>
                             <FormGroup label='Descrição: *' htmlFor='inputDescricao'>
-                                <input
-                                    type='text'
-                                    id='inputDescricao'
-                                    value={descricao}
-                                    className='form-control'
-                                    name='descricao'
-                                    onChange={(e) => setDescricao(e.target.value)}
-                                />
+                            <textarea
+                                id="inputDescricao"
+                                value={descricao}
+                                className="form-control"
+                                name="descricao"
+                                rows={3}
+                                onChange={(e) => setDescricao(e.target.value)}
+                            ></textarea>
                             </FormGroup>
                                     <br></br>
                                     <Stack spacing={1} padding={1} direction='row'>
