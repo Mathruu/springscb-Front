@@ -80,6 +80,7 @@ function ListagemFuncionarios() {
                                         <th scope='col'>CPF</th>
                                         <th scope='col'>Salário</th>
                                         <th scope='col'>Vendas</th>
+                                        <th scope='col'>Ações</th>
                                     </tr>
                                 </thead>
                                 <tbody>

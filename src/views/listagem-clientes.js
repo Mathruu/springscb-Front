@@ -63,7 +63,7 @@ function ListagemClientes() {
 
     return (
         <div className='container'>
-            <Card title='Listagem de Alunos'>
+            <Card title='Listagem de Clientes'>
                 <div className='row'>
                     <div className='col-lg-12'>
                         <div className='bs-component'>
@@ -81,6 +81,7 @@ function ListagemClientes() {
                                         <th scope='col'>Cpf</th>
                                         <th scope='col'>Email</th>
                                         <th scope='col'>Livros</th>
+                                        <th scope='col'>Ações</th>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -89,7 +90,7 @@ function ListagemClientes() {
                                             <td>{dado.nome}</td>
                                             <td>{dado.cpf}</td>
                                             <td>{dado.email}</td>
-                                            <td>{dado.livros}</td>
+                                            <td>{dado.tituloLivro}</td>
                                             <td>
                                                 <Stack spacing={1} padding={0} direction='row'>
                                                     <IconButton

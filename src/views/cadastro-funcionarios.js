@@ -23,7 +23,7 @@ function CadastrarFuncionaro() {
     const [nome, setNome] = useState('');
     const [cpf, setCpf] = useState('');
     const [email, setEmail] = useState('');
-    const [IdEndereco, setEndereco] = useState(0);
+    const [enderecoCep, setEnderecoCep] = useState('');
     const [salario, setSalario] = useState('');
     const [vendas, setVendas] = useState('');
 
@@ -35,7 +35,7 @@ function CadastrarFuncionaro() {
             setNome('');
             setCpf('');
             setEmail('');
-            setEndereco(0);
+            setEnderecoCep('');
             setSalario('');
             setVendas('');
         } else {
@@ -43,7 +43,7 @@ function CadastrarFuncionaro() {
             setNome(dados.nome);
             setCpf(dados.cpf);
             setEmail(dados.email);
-            setEndereco(dados.endereco);
+            setEnderecoCep(dados.enderecoCep);
             setSalario(dados.salario);
             setVendas(dados.vendas);
         }
@@ -55,7 +55,7 @@ function CadastrarFuncionaro() {
             nome,
             cpf,
             email,
-            IdEndereco,
+            enderecoCep,
             salario,
             vendas
         };
@@ -96,7 +96,7 @@ function CadastrarFuncionaro() {
                 setNome(response.data.nome);
                 setCpf(response.data.cpf);
                 setEmail(response.data.email);
-                setEndereco(response.data.endereco);
+                setEnderecoCep(response.data.enderecoCep);
                 setSalario(response.data.salario);
                 setVendas(response.data.vendas);
             })
@@ -150,14 +150,15 @@ function CadastrarFuncionaro() {
                                     onChange={(e) => setEmail(e.target.value)}
                                 />
                             </FormGroup>
-                            <FormGroup label='Endereço' htmlFor='inputEndereco'>
+                            <FormGroup label='Endereço*(Cep) :' htmlFor='inputCep'>
                                 <input
                                     type='text'
-                                    id='inputEndereco'
-                                    value={IdEndereco}
+                                    maxLength='8'
+                                    id='inputCep'
+                                    value={enderecoCep}
                                     className='form-control'
                                     name='endereco'
-                                    onChange={(e) => setEndereco(e.target.value)}
+                                    onChange={(e) => setEnderecoCep(e.target.value)}
                                 />
                             </FormGroup>
                             <FormGroup label='Salário' htmlFor='inputSalario'>

@@ -23,8 +23,8 @@ function CadastroCliente() {
     const [nome, setNome] = useState('');
     const [cpf, setCpf] = useState('');
     const [email, setEmail] = useState('');
-    const [IdEndereco, setEndereco] = useState(0);
-    const [idlivro, setIdLivro] = useState(0);
+    const [enderecoCep, setEnderecoCep] = useState('');
+    const [tituloLivro, setTituloLivro] = useState(0);
 
     const [dados, setDados] = React.useState([]);
 
@@ -35,15 +35,15 @@ function CadastroCliente() {
             setNome('');
             setCpf('');
             setEmail('');
-            setEndereco(0);
-            setIdLivro(0);
+            setEnderecoCep('');
+            setTituloLivro(0);
         } else {
             setId(dados.id);
             setNome(dados.nome);
             setCpf(dados.cpf);
             setEmail(dados.email);
-            setEndereco(dados.endereco);
-            setIdLivro(dados.idlivro);
+            setEnderecoCep(dados.enderecoCep);
+            setTituloLivro(dados.tituloLivro);
         }
     }
 
@@ -53,35 +53,34 @@ function CadastroCliente() {
             nome,
             cpf,
             email,
-            IdEndereco,
-            idlivro
+            enderecoCep,
+            tituloLivro
         };
-        data = JSON.stringify(data);
         if (idParam == null) {
             await axios
                 .post(baseURL, data, {
                     headers: { 'Content-Type': 'application/json' },
-        })
-        .then(function(response) {
-            mensagemSucesso(`Cliente ${nome} cadastrado com sucesso!`);
-            navigate(`/listagem-clientes`);
-        })
-        .catch(function(error) {
-            mensagemErro(error.response.data);
-        });
-    } else {
-        await axios
-            .put(`${baseURL}/${idParam}`, data, {
-                headers: { 'Content-Type': 'application/json' },
-    })
-    .then(function(response) {
-        mensagemSucesso(`Cliente ${nome} alterado com sucesso!`);
-        navigate(`/listagem-clientes`);
-    })
-    .catch(function(error) {
-        mensagemErro(error.response.data);
-    });
-    }
+                })
+                .then(function(response) {
+                    mensagemSucesso(`Cliente ${nome} cadastrado com sucesso!`);
+                    navigate(`/listagem-clientes`);
+                })
+                .catch(function(error) {
+                mensagemErro(error.response.data);
+            });
+        } else {
+            await axios
+                .put(`${baseURL}/${idParam}`, data, {
+                    headers: { 'Content-Type': 'application/json' },
+                })
+                .then(function(response) {
+                    mensagemSucesso(`Cliente ${nome} alterado com sucesso!`);
+                    navigate(`/listagem-clientes`);
+                })
+                .catch(function(error) {
+                    mensagemErro(error.response.data);
+                });
+        }
     }  
     
     async function buscar() {
@@ -93,8 +92,8 @@ function CadastroCliente() {
                 setNome(response.data.nome);
                 setCpf(response.data.cpf);
                 setEmail(response.data.email);
-                setEndereco(response.data.endereco);
-                setIdLivro(response.data.idlivro);
+                setEnderecoCep(response.data.enderecoCep);
+                setTituloLivro(response.data.tituloLivro);
                 })
             .catch((error) => {
                 console.error(error);
@@ -156,30 +155,31 @@ function CadastroCliente() {
                                     onChange={(e) => setEmail(e.target.value)}
                                 />
                                 </FormGroup>
-                            <FormGroup label='Endereço: *' htmlFor='inputEndereco'>
+                            <FormGroup label='Endereço*(Cep) :' htmlFor='inputCep'>
                                 <input
                                     type='endereco'
-                                    id='inputEndereco'
-                                    value={IdEndereco}
+                                    maxLength='8'
+                                    id='inputCep'
+                                    value={enderecoCep}
                                     className='form-control'
                                     name='endereco'
-                                    onChange={(e) => setEndereco(e.target.value)}
+                                    onChange={(e) => setEnderecoCep(e.target.value)}
                                 />
                                 </FormGroup>
                             <FormGroup label='Livro: *' htmlFor='selectLivro'>
                                 <select
                                     className='form-select'
                                     id='selectLivro'
-                                    name='idlivro'
-                                    value={idlivro}
-                                    onChange={(e) => setIdLivro(e.target.value)}
+                                    name='tituloLivro'
+                                    value={tituloLivro}
+                                    onChange={(e) => setTituloLivro(e.target.value)}
                                 >
                                     <option key='0' value='0'>
-                                        {' '}
+                                        {'Selecione um livro'}
                                     </option>
                                     {dadosLivros.map((dado) => (
-                                        <option key={dado.id} value={dado.id}>
-                                            {dado.nome}
+                                        <option key={dado.id} value={dado.titulo}>
+                                            {dado.titulo}
                                         </option>
                                 ))}
                             </select>

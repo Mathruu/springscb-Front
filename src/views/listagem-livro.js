@@ -79,6 +79,7 @@ function ListagemLivro() {
                                     <th scope='col'>Título</th>
                                     <th scope='col'>Autor</th>
                                     <th scope='col'>Editora</th>
+                                    <th scope='col'>Ações</th>
                                 </tr>
                             </thead>
                             <tbody>
